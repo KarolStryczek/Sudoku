@@ -25,9 +25,9 @@ Yuji Sato i Hazuki Inoue w pracy pt. „Solving Sudoku with Genetic Operations t
 
 Algorytm:
 - liczebność populacji: **100**
-- selekcja: wybor rodziców **µ(75)** (proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **µ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **µ** osobników do nowej populacji
-- mutacja: 
-- krzyżowanie: jednopunktowa
+- selekcja: wybor rodziców **µ(75)** (proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **λ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **µ** osobników do nowej populacji
+- mutacja: nie zostanie zrealizowana na pierwszym etapie implementacji
+- krzyżowanie: równomierne i jednopunktowe
 - ocena (warunek stopu): maksymalna liczba iteracji **(200)**, brak poprawy najlepszego rozwiązania populacji od **(10)**, znalezienie rozwiązania (funkcja celu równa 0)
 
 Źródła:
