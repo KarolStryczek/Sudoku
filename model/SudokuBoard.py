@@ -35,3 +35,8 @@ class SudokuBoard:
 
     def set_element(self, row_index: int, col_index: int, number: int) -> None:
         self.board[row_index][col_index] = number
+
+    def set_row(self, row_index: int, row: List[int]) -> None:
+        if len(row) != 9:
+            raise Exception("Provided row has wrong length (should be 9 digits)")
+        self.board[row_index] = row
