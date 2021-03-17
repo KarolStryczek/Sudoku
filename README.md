@@ -23,6 +23,13 @@ James Hereford w artykule „Integer-valued Particle Swarm Optimization applied 
 John M. Weiss w artykule pod nazwą „Genetic Algorithms and Sudoku” zauważył, że GA okazały się skuteczne w atakowaniu wielu NP-trudnych problemów, w szczególności problemów optymalizacyjnych, takich jak problem komiwojażera. Stwierdził natomiast, że GA okazują się „niezwykle nieskuteczne w rozwiązywaniu sudoku”, przynajmniej jeśli chodzi o czas uzyskania optymalnego rozwiązania. Jako przyczyny wskazał m. in. powolną zbieżność oraz niezdolność do ucieczki od lokalnych minimów. Z drugiej strony, wybierając wystarczająco duże wielkości populacji i rozsądne ustawienia pozostałych parametrów, algorytm był w stanie rozwiązać większość diagramów. 
 Yuji Sato i Hazuki Inoue w pracy pt. „Solving Sudoku with Genetic Operations that Preserve Building Blocks” zaproponowali GA uwzględniające efektywne building blocks (z ang. bloki budujące), jak również silniejszą funkcję poszukiwania lokalnego. Stwierdzili, że algorytm z wysokim prawdopodobieństwem znajduje optymalne rozwiązania. Zauważyli również, że można się spodziewać jeszcze większej dokładności, dodając do zaproponowanego algorytmu korektę opartą na disparity hypothesis (z ang. hipoteza rozbieżności).
 
+Algorytm:
+- liczebność populacji: **100**
+- selekcja: wybor rodziców **µ(75)** (proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **λ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **µ** osobników do nowej populacji
+- mutacja: nie zostanie zrealizowana na pierwszym etapie implementacji
+- krzyżowanie: równomierne i jednopunktowe
+- ocena (warunek stopu): maksymalna liczba iteracji **(200)**, brak poprawy najlepszego rozwiązania populacji od **(10)** iteracji, znalezienie rozwiązania (funkcja celu **= 0**)
+
 Źródła:
 https://pl.wikipedia.org/wiki/Sudoku
 https://pl.qaz.wiki/wiki/Sudoku_solving_algorithms
