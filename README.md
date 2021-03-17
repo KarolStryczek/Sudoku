@@ -28,7 +28,7 @@ Algorytm:
 - selekcja: wybor rodziców **µ(75)** (proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **λ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **µ** osobników do nowej populacji
 - mutacja: nie zostanie zrealizowana na pierwszym etapie implementacji
 - krzyżowanie: równomierne i jednopunktowe
-- ocena (warunek stopu): maksymalna liczba iteracji **(200)**, brak poprawy najlepszego rozwiązania populacji od **(10)**, znalezienie rozwiązania (funkcja celu równa 0)
+- ocena (warunek stopu): maksymalna liczba iteracji **(200)**, brak poprawy najlepszego rozwiązania populacji od **(10)** iteracji, znalezienie rozwiązania (funkcja celu **= 0**)
 
 Źródła:
 https://pl.wikipedia.org/wiki/Sudoku
