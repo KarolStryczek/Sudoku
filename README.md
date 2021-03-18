@@ -1,10 +1,10 @@
 # Sudoku-1
 
-Opis zadania:
+Opis zadania: \
 Zagadnienie znane jako sudoku (jap. od „sūji wa dokushin ni kagiru”, czyli „cyfry muszą być pojedyncze”) to szeroko znana i popularna łamigłówka, której celem jest wypełnienie diagramu o wymiarach 9×9 w taki sposób, aby w każdym wierszu, w każdej kolumnie i w każdym z dziewięciu pogrubionych kwadratów 3×3 (zwanych „blokami” lub „podkwadratami”) znalazło się po jednej cyfrze od 1 do 9. W przeciwieństwie do innych łamigłówek, sudoku nie wymaga od gracza wykonywania żadnych rachunków matematycznych, przez co wydaje się prosta. W rzeczywistości bez cierpliwości oraz umiejętności logicznego myślenia rozwiązanie diagramu nie jest możliwe. 
 W 2005 roku udowodniono, że istnieje 6 670 903 752 021 072 936 960 różnych poprawnych plansz sudoku. Wiadomo także, że aby rozwiązanie planszy było jednoznaczne, potrzeba mieć podanych minimum 17 cyfr w diagramie. Nie każdy układ 17 cyfr daje jednak rozwiązanie jednoznaczne. Liczba znanych 17-cyfrowych plansz sudoku dających jednoznaczne rozwiązanie to 49 151.
 
-Przegląd literatury z zakresu stosowanych metod:
+Przegląd literatury z zakresu stosowanych metod: \
 Do dziś powstało wiele technik rozwiązywania sudoku. Poniżej znajdują się krótkie opisy kilku z nich.
 1.	Backtracking (z ang. wycofywanie)
 Backtracking jest przeszukiwaniem w głąb - przed przejściem do następnej gałęzi całkowicie eksploruje wybraną gałąź, aż do znalezienia dopuszczalnego rozwiązania. Algorytm odwiedza puste komórki w określonej kolejności, wpisując cyfry po kolei lub cofając się, gdy okaże się, że żadna cyfra nie jest prawidłowa. Zaletami tej metody są gwarantowane rozwiązanie (o ile zagadka jest ważna) oraz prostota algorytmu. Wadą tej metody natomiast jest to, że czas rozwiązywania może być długi w porównaniu z algorytmami wzorowanymi na metodach dedukcyjnych.
@@ -24,17 +24,18 @@ John M. Weiss w artykule pod nazwą „Genetic Algorithms and Sudoku” zauważy
 Yuji Sato i Hazuki Inoue w pracy pt. „Solving Sudoku with Genetic Operations that Preserve Building Blocks” zaproponowali GA uwzględniające efektywne building blocks (z ang. bloki budujące), jak również silniejszą funkcję poszukiwania lokalnego. Stwierdzili, że algorytm z wysokim prawdopodobieństwem znajduje optymalne rozwiązania. Zauważyli również, że można się spodziewać jeszcze większej dokładności, dodając do zaproponowanego algorytmu korektę opartą na disparity hypothesis (z ang. hipoteza rozbieżności).
 
 Algorytm:
-- liczebność populacji: **100**
-- selekcja: wybor rodziców **µ(75)** (proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **λ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **µ** osobników do nowej populacji
+- liczebność populacji: **a(100)**
+- selekcja: wybor rodziców **µ(75)** (typ selekcji: proporcjonalna do przystosowania) -> losowo wybieramy pary do krzyżowania -> tworzymy **λ(75)** potomków -> ze zbioru **µ**+**λ** wybieramy **a** osobników do nowej populacji (typ selekcji: proporcjonalna do przystosowania)
 - mutacja: nie zostanie zrealizowana na pierwszym etapie implementacji
 - krzyżowanie: równomierne i jednopunktowe
 - ocena (warunek stopu): maksymalna liczba iteracji **(200)**, brak poprawy najlepszego rozwiązania populacji od **(10)** iteracji, znalezienie rozwiązania (funkcja celu **= 0**)
+- iteracja = stworzenie jednej populacji = generacja 
 
 Źródła:
-https://pl.wikipedia.org/wiki/Sudoku
-https://pl.qaz.wiki/wiki/Sudoku_solving_algorithms
-Helmut Simonis – „Sudoku as a Constraint Problem”
-Alberto Moraglio i Julian Togelius - „Geometric Particle Swarm Optimization for the Sudoku Puzzle”
-James Hereford – „Integer-valued Particle Swarm Optimization applied to Sudoku puzzles”
-John M. Weiss – „Genetic Algorithms and Sudoku”
-Yuji Sato i Hazuki Inoue – „Solving Sudoku with Genetic Operations that Preserve Building Blocks”
+https://pl.wikipedia.org/wiki/Sudoku \
+https://pl.qaz.wiki/wiki/Sudoku_solving_algorithms \
+Helmut Simonis – „Sudoku as a Constraint Problem” \
+Alberto Moraglio i Julian Togelius - „Geometric Particle Swarm Optimization for the Sudoku Puzzle” \
+James Hereford – „Integer-valued Particle Swarm Optimization applied to Sudoku puzzles” \
+John M. Weiss – „Genetic Algorithms and Sudoku” \
+Yuji Sato i Hazuki Inoue – „Solving Sudoku with Genetic Operations that Preserve Building Blocks” \
