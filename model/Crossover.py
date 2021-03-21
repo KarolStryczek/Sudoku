@@ -18,7 +18,7 @@ class BasicCrossover(Crossover):
         super().__init__(s1, s2)
 
     def crossover(self) -> SudokuBoard:
-        threshold = random.randint(1, 7)
+        threshold = random.randint(1, 8)
         new_board = SudokuBoard()
         for i in range(0, 9):
             new_board.set_row(i, self.first_parent.row(i) if i < threshold else self.second_parent.row(i))
