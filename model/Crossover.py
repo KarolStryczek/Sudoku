@@ -35,3 +35,14 @@ class OneRowCrossover(Crossover):
         for i in range(0, 9):
             new_board.set_row(i, self.first_parent.row(i) if i != row_index else self.second_parent.row(i))
         return new_board
+
+
+class RandomCrossover(Crossover):
+    def __init__(self, s1: SudokuBoard, s2: SudokuBoard) -> None:
+        super().__init__(s1, s2)
+
+    def crossover(self) -> SudokuBoard:
+        new_board = SudokuBoard()
+        for i in range(0, 9):
+            new_board.set_row(i, self.first_parent.row(i) if random.randint(0, 1) == 0 else self.second_parent.row(i))
+        return new_board
