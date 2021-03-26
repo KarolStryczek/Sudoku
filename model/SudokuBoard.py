@@ -1,6 +1,6 @@
 from typing import List
 import itertools
-
+import copy
 
 class SudokuBoard:
     def __init__(self, board_string: str = None) -> None:
@@ -19,11 +19,14 @@ class SudokuBoard:
                     return False
         return True
 
+    # def __hash__(self):
+    #     return hash(str(self.board))
+
     def __str__(self):
-        return str(self.board)
+        return str(self.calculate_fitness())
 
     def __repr__(self):
-        return repr(self.board)
+        return str(self.calculate_fitness())
 
     def element(self, row: int, col: int) -> int:
         return self.board[row][col]
@@ -48,7 +51,7 @@ class SudokuBoard:
     def set_row(self, row_index: int, row: List[int]) -> None:
         if len(row) != 9:
             raise Exception("Provided row has wrong length (should be 9 digits)")
-        self.board[row_index] = row
+        self.board[row_index] = copy.deepcopy(row)
 
     def count_duplicates(self, checklist: List[int]) -> int:
         return len(checklist)-len(set(checklist))
@@ -60,4 +63,7 @@ class SudokuBoard:
             duplicates_in_columns += self.count_duplicates(self.column(i))
             duplicates_in_squares += self.count_duplicates(self.square(i))
         return duplicates_in_rows + duplicates_in_columns + duplicates_in_squares
-        
+
+    def swap_elements_in_row(self, row: int, col1: int, col2: int) -> None:
+        # print(f'Swapping: {row}, {col1}, {col2}')
+        self.board[row][col1], self.board[row][col2] = self.board[row][col2], self.board[row][col1]
