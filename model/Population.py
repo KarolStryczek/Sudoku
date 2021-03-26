@@ -4,6 +4,7 @@ from model.Mutator import Mutator
 from model.SudokuBoard import SudokuBoard
 import random
 import pickle
+import re
 
 
 class Population:
@@ -51,6 +52,7 @@ class Population:
                 self.mutator.mutate(sudoku)
         self.sort_population()
 
+    # mocking starting populations:
     def save_population(self, file_path: str) -> None:
         list_all_population = list()
         list_all_population_str = list()
@@ -65,7 +67,20 @@ class Population:
             str_empty = ""
             list_all_population_str.append(str_empty.join(str(list_all_population[k])))
 
-        print(list_all_population_str)
-        #list_all_population_str_full = list_all_population_str_full.join(list_all_population_str)    
-        #pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
+        #print(list_all_population_str)
+        list_all_population_str_full = list_all_population_str_full.join(list_all_population_str)    
+        #print(list_all_population_str_full)
+        #print(type(list_all_population_str_full))
+        list_all_population_str_full = list_all_population_str_full.replace('[', '')
+        list_all_population_str_full = list_all_population_str_full.replace(']', '')
+        list_all_population_str_full = list_all_population_str_full.replace(',', '')
+        list_all_population_str_full = list_all_population_str_full.replace(' ', '')
+        
+        list_all_population_str_full = re.sub("(.{81})", "\\1\n", list_all_population_str_full, 0, re.DOTALL)
+        list_all_population_str_full = list_all_population_str_full.rstrip("\n")
+
+        print('List of sudoku boards (mocking starting populations):')
+        print(list_all_population_str_full)
+        print('\n')
+        pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
         
