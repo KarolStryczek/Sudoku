@@ -2,6 +2,7 @@ from model.Mutator import Mutator
 from model.Population import Population
 from utils.BoardGenerator import BoardGenerator
 from model.Crossover import *
+import pickle
 
 
 class SudokuSolver:
@@ -9,6 +10,13 @@ class SudokuSolver:
         self.sudoku_base = sudoku_base
         mutator.set_base_board(sudoku_base)
         self.population = Population(BoardGenerator(self.sudoku_base).generate_population(population_size), mutator)
+        print(self.population.population[0].board) # mock
+        file_path = r'./input/mocking_start_pops/mock_start_1.txt' # mock
+        self.population.save_population(file_path) # mock
+        #for i in range(0,self.population.population_size): # mock
+        #    pickle.dump(self.population.population[i].board, open(r'./input/mocking_start_pops/mock_start_1.txt', 'wb')) # mock
+        #print(pickle.load(open(r'./input/mocking_start_pops/mock_start_1.txt', 'rb'))) # mock
+        print(len(pickle.load(open(r'./input/mocking_start_pops/mock_start_1.txt', 'rb')))) # mock
         self.cross_per_iter = cross_per_iter
 
     def solve(self, max_iter: int = 200, max_no_improve: int = 10) -> None:

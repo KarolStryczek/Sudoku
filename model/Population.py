@@ -3,6 +3,7 @@ from typing import List, Tuple
 from model.Mutator import Mutator
 from model.SudokuBoard import SudokuBoard
 import random
+import pickle
 
 
 class Population:
@@ -49,3 +50,22 @@ class Population:
                 # print(f"Mutating. CURRENT = {sudoku.calculate_fitness()}")
                 self.mutator.mutate(sudoku)
         self.sort_population()
+
+    def save_population(self, file_path: str) -> None:
+        list_all_population = list()
+        list_all_population_str = list()
+        list_all_population_str_full = ""
+        str_empty = ""
+
+        for i in range(0,self.population_size):
+            for j in range(0, len(self.population[i].board)):
+                list_all_population.append(self.population[i].board[j])
+
+        for k in range(0, len(list_all_population)):
+            str_empty = ""
+            list_all_population_str.append(str_empty.join(str(list_all_population[k])))
+
+        print(list_all_population_str)
+        #list_all_population_str_full = list_all_population_str_full.join(list_all_population_str)    
+        #pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
+        
