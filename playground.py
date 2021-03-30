@@ -5,5 +5,5 @@ from utils.BoardGenerator import BoardGenerator
 
 base = SudokuCSVReader(r'./input/quizzes1000perRow.txt').read(1)
 
-solver = SudokuSolver(base, 100, 50, SmartDuplicatesColumnMutator())
-solver.solve(1000, 10)
+solver = SudokuSolver(base, 10, 10, SmartDuplicatesColumnMutator())
+solver.solve(10, 5)

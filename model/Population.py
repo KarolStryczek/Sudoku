@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+from utils.LogUtils import m_logger
 from model.Mutator import Mutator
 from model.SudokuBoard import SudokuBoard
 import random
@@ -42,10 +43,10 @@ class Population:
         return sum([sudoku.calculate_fitness() for sudoku in self.population]) / len(self.population)
 
     def mutate(self) -> None:
-        # print(f"Mutating. Best = {self.population[0].calculate_fitness()}")
+        m_logger.info(f"Mutating. Best = {self.population[0].calculate_fitness()}")
         self.sort_population()
         for sudoku in self.population[10:]:
             if random.randint(0, 99) < 20:
-                # print(f"Mutating. CURRENT = {sudoku.calculate_fitness()}")
+                m_logger.info(f"Mutating. CURRENT = {sudoku.calculate_fitness()}")
                 self.mutator.mutate(sudoku)
         self.sort_population()
