@@ -12,13 +12,13 @@ class SudokuSolver:
         self.population = Population(BoardGenerator(self.sudoku_base).generate_population(population_size), mutator)
         self.cross_per_iter = cross_per_iter
 
-    def mock_start_pops(self) -> None:
+    def mock_start_pops(self, sudoku_num: int) -> None:
         # mocking starting populations:
-        file_path = r'./input/mocking_start_pops/mock_start_0.txt'
+        file_path = rf'./input/mocking_start_pops/mock_start_{sudoku_num}.txt'
         self.population.save_population(file_path)
-        print('List of sudoku boards (mocking starting populations) - writing to a file test:')
-        print(len(pickle.load(open(file_path, 'rb'))))
-        print(pickle.load(open(file_path, 'rb')))
+        #print('List of sudoku boards (mocking starting populations) - writing to a file test:')
+        #print(len(pickle.load(open(file_path, 'rb'))))
+        #print(pickle.load(open(file_path, 'rb')))
         
 
     def solve(self, max_iter: int = 200, max_no_improve: int = 10) -> None:

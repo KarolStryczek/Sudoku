@@ -22,9 +22,9 @@ class SudokuCSVReader:
         sudoku_string_line = None
         sudoku_string = csv.reader(self.file)
         sudoku_string_line = list(sudoku_string)
-        print('A read board:')
-        print(sudoku_string_line[sudoku_number][0])
-        print('\n')
+        #print('A read board:')
+        #print(sudoku_string_line[sudoku_number][0])
+        #print('\n')
         return SudokuBoard(sudoku_string_line[sudoku_number][0])
 
     def __del__(self) -> None:

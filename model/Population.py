@@ -80,8 +80,8 @@ class Population:
         list_all_population_str_full = re.sub("(.{81})", "\\1\n", list_all_population_str_full, 0, re.DOTALL)
         list_all_population_str_full = list_all_population_str_full.rstrip("\n")
 
-        print('List of sudoku boards (mocking starting populations):')
-        print(list_all_population_str_full)
-        print('\n')
+        #print('List of sudoku boards (mocking starting populations):')
+        #print(list_all_population_str_full)
+        #print('\n')
         pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
         
