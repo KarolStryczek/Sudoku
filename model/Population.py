@@ -1,8 +1,11 @@
 from typing import List, Tuple
 
+from utils.LogUtils import m_logger
 from model.Mutator import Mutator
 from model.SudokuBoard import SudokuBoard
 import random
+import pickle
+import re
 
 
 class Population:
@@ -42,10 +45,43 @@ class Population:
         return sum([sudoku.calculate_fitness() for sudoku in self.population]) / len(self.population)
 
     def mutate(self) -> None:
-        # print(f"Mutating. Best = {self.population[0].calculate_fitness()}")
+        m_logger.info(f"Mutating. Best = {self.population[0].calculate_fitness()}")
         self.sort_population()
         for sudoku in self.population[10:]:
             if random.randint(0, 99) < 20:
-                # print(f"Mutating. CURRENT = {sudoku.calculate_fitness()}")
+                m_logger.info(f"Mutating. CURRENT = {sudoku.calculate_fitness()}")
                 self.mutator.mutate(sudoku)
         self.sort_population()
+
+    # mocking starting populations:
+    def save_population(self, file_path: str) -> None:
+        list_all_population = list()
+        list_all_population_str = list()
+        list_all_population_str_full = ""
+        str_empty = ""
+
+        for i in range(0,self.population_size):
+            for j in range(0, len(self.population[i].board)):
+                list_all_population.append(self.population[i].board[j])
+
+        for k in range(0, len(list_all_population)):
+            str_empty = ""
+            list_all_population_str.append(str_empty.join(str(list_all_population[k])))
+
+        #print(list_all_population_str)
+        list_all_population_str_full = list_all_population_str_full.join(list_all_population_str)    
+        #print(list_all_population_str_full)
+        #print(type(list_all_population_str_full))
+        list_all_population_str_full = list_all_population_str_full.replace('[', '')
+        list_all_population_str_full = list_all_population_str_full.replace(']', '')
+        list_all_population_str_full = list_all_population_str_full.replace(',', '')
+        list_all_population_str_full = list_all_population_str_full.replace(' ', '')
+        
+        list_all_population_str_full = re.sub("(.{81})", "\\1\n", list_all_population_str_full, 0, re.DOTALL)
+        list_all_population_str_full = list_all_population_str_full.rstrip("\n")
+
+        print('List of sudoku boards (mocking starting populations):')
+        print(list_all_population_str_full)
+        print('\n')
+        pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
+        
