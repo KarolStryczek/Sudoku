@@ -54,15 +54,17 @@ class Population:
         self.sort_population()
 
     # mocking starting populations:
-    def save_population(self, file_path: str) -> None:
+    def save_population(self, file_path: str, sudoku_base: SudokuBoard) -> None:
         list_all_population = list()
+        list_all_population.append(sudoku_base.board) # base board
         list_all_population_str = list()
         list_all_population_str_full = ""
         str_empty = ""
 
         for i in range(0,self.population_size):
-            for j in range(0, len(self.population[i].board)):
-                list_all_population.append(self.population[i].board[j])
+            #for j in range(0, len(self.population[i].board)):
+                #list_all_population.append(self.population[i].board[j])
+            list_all_population.append(self.population[i].board)
 
         for k in range(0, len(list_all_population)):
             str_empty = ""
@@ -83,5 +85,7 @@ class Population:
         #print('List of sudoku boards (mocking starting populations):')
         #print(list_all_population_str_full)
         #print('\n')
-        pickle.dump(list_all_population_str_full, open(file_path, 'wb'))
+        file = open(file_path, 'wb')
+        pickle.dump(list_all_population_str_full, file)
+        file.close()
         
