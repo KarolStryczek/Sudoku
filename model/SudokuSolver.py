@@ -4,22 +4,26 @@ from utils.BoardGenerator import BoardGenerator
 from model.Crossover import *
 from utils.LogUtils import m_logger, c_logger, log_to_all
 import pickle
+from typing import List
 
 class SudokuSolver:
     def __init__(self, sudoku_base: SudokuBoard, population_size: int, cross_per_iter: int, mutator: Mutator) -> None:
         self.sudoku_base = sudoku_base
-        mutator.set_base_board(sudoku_base)
-        self.population = Population(BoardGenerator(self.sudoku_base).generate_population(population_size), mutator)
+        self.population_size = population_size
         self.cross_per_iter = cross_per_iter
+        self.mutator = mutator
+        mutator.set_base_board(sudoku_base)
 
-    def mock_start_pops(self) -> None:
+    def create_start_population(self) -> None:
+        self.population = Population(BoardGenerator(self.sudoku_base).generate_population(self.population_size), self.mutator)
+
+    def mock_start_pops(self, sudoku_num: int) -> None:
         # mocking starting populations:
-        file_path = r'./input/mocking_start_pops/mock_start_0.txt'
-        self.population.save_population(file_path)
-        print('List of sudoku boards (mocking starting populations) - writing to a file test:')
-        print(len(pickle.load(open(file_path, 'rb'))))
-        print(pickle.load(open(file_path, 'rb')))
-        
+        file_path = rf'./input/mocking_start_pops/mock_start_{sudoku_num}.pkl'
+        self.population.save_population(file_path, self.sudoku_base)
+
+    def read_mock_start_pops(self, population: List[SudokuBoard]) -> None:
+        self.population = Population(population, self.mutator)
 
     def solve(self, max_iter: int = 200, max_no_improve: int = 10) -> None:
         current_best_fitness = 1e6
