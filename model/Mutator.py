@@ -28,12 +28,13 @@ class LazyMutator(Mutator):
         pass
 
 
-class SmartDuplicatesColumnMutator(Mutator):
-    def mutate(self, sudoku: SudokuBoard) -> None:
-        row = random.randint(0, 8)
-        not_filled_indexes = [i for i in range(0, 9) if self.base_sudoku.element(row, i) != 0]
-        for col in not_filled_indexes:
-            element = sudoku.element(row, col)
-            if element in sudoku.column(col):
-                not_filled_indexes.remove(col)
-                sudoku.swap_elements_in_row(row, col, random.choice(not_filled_indexes))
+# class SmartDuplicatesColumnMutator(Mutator):
+#     def mutate(self, sudoku: SudokuBoard) -> None:
+#         row = random.randint(0, 8)
+#         not_filled_indexes = [i for i in range(0, 9) if self.base_sudoku.element(row, i) == 0]
+#         for col in not_filled_indexes:
+#             element = sudoku.element(row, col)
+#             if element in sudoku.column(col):
+#                 not_filled_indexes.remove(col)
+#                 if len(not_filled_indexes) > 0:
+#                     sudoku.swap_elements_in_row(row, col, random.choice(not_filled_indexes))

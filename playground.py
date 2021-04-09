@@ -9,7 +9,7 @@ population_size = 1000
 cross_per_iter = 200
 max_iter = 50
 max_no_improve = 10
-mutator = SmartDuplicatesColumnMutator()
+mutator = RandomInRowMutator()
 
 if do_mocking_start_pop:
     do_read_from_mocking_start_pop = False
