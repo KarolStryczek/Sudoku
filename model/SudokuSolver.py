@@ -59,6 +59,6 @@ class SudokuSolver:
         plt.xlabel("Iteration")
         plt.ylabel("Fitness")
         plt.legend(["Best", "Mean"])
-        filename = rf'img/result-{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.png'
+        filename = rf'img/result-{self.population_size}_{self.cross_per_iter}_{max_iter}-{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.png'
         plt.savefig(filename)
         plt.show()
