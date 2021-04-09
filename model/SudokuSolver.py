@@ -2,14 +2,17 @@ from model.Mutator import Mutator
 from model.Population import Population
 from utils.BoardGenerator import BoardGenerator
 from model.Crossover import *
-from utils.LogUtils import m_logger, c_logger, log_to_all
-import pickle
+from utils.LogUtils import m_logger, log_to_all
 from typing import List
+import matplotlib.pyplot as plt
+from datetime import datetime
+
 
 class SudokuSolver:
     def __init__(self, sudoku_base: SudokuBoard, population_size: int, cross_per_iter: int, mutator: Mutator) -> None:
         self.sudoku_base = sudoku_base
         self.population_size = population_size
+        self.population = None
         self.cross_per_iter = cross_per_iter
         self.mutator = mutator
         mutator.set_base_board(sudoku_base)
@@ -28,7 +31,10 @@ class SudokuSolver:
     def solve(self, max_iter: int = 200, max_no_improve: int = 10) -> None:
         current_best_fitness = 1e6
         no_improve_count = 0
+        results = list()
         for iteration in range(0, max_iter):
+            results.append((self.population.get_best_fitness(), self.population.get_mean_fitness()))
+            print(f'{iteration}/{max_iter}')
             for crossover_number in range(0, self.cross_per_iter):
                 p1, p2 = self.population.choose_random_parents()
                 self.population.add(RandomCrossover(p1, p2).crossover())
@@ -49,4 +55,10 @@ class SudokuSolver:
             if no_improve_count >= max_no_improve:
                 pass  # TODO BREAK
         log_to_all(f'result: {self.population.get_best_fitness()}, {self.population.get_mean_fitness()}')
-
+        plt.plot(range(0, max_iter), results)
+        plt.xlabel("Iteration")
+        plt.ylabel("Fitness")
+        plt.legend(["Best", "Mean"])
+        filename = rf'img/result-{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.png'
+        plt.savefig(filename)
+        plt.show()
