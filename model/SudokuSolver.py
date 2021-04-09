@@ -34,7 +34,7 @@ class SudokuSolver:
                 self.population.add(RandomCrossover(p1, p2).crossover())
             self.population.update()
             new_best_fitness = self.population.get_best_fitness()
-            log_to_all(f'iteration: {self.population.get_best_fitness()}, {self.population.get_mean_fitness()}')
+            log_to_all(f'iteration:  {iteration}, best: {self.population.get_best_fitness()}, mean: {self.population.get_mean_fitness()}')
             if new_best_fitness < current_best_fitness:
                 current_best_fitness = new_best_fitness
                 no_improve_count = 0
