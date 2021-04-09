@@ -4,10 +4,10 @@ from model.SudokuSolver import SudokuSolver
 
 do_mocking_start_pop = False
 do_read_from_mocking_start_pop = True
-chosen_sudoku_board = 0
+chosen_sudoku_board = 7
 population_size = 1000
 cross_per_iter = 200
-max_iter = 50
+max_iter = 5
 max_no_improve = 10
 mutator = RandomInRowMutator()
 

@@ -59,6 +59,7 @@ class SudokuSolver:
         plt.xlabel("Iteration")
         plt.ylabel("Fitness")
         plt.legend(["Best", "Mean"])
+        plt.title("Sudoku Solver - Genethic Algorithm" + "\nParameters: pop_size: " + str(self.population_size) + " cross_per_iter: " + str(self.cross_per_iter) + " max_iter: " + str(max_iter))
         filename = rf'img/result-{self.population_size}_{self.cross_per_iter}_{max_iter}-{datetime.now().strftime("%d-%m-%Y_%H-%M-%S")}.png'
         plt.savefig(filename)
         plt.show()
