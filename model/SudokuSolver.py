@@ -55,7 +55,7 @@ class SudokuSolver:
             if no_improve_count >= max_no_improve:
                 pass  # TODO BREAK
         log_to_all(f'result: {self.population.get_best_fitness()}, {self.population.get_mean_fitness()}')
-        plt.plot(range(0, max_iter), results)
+        plt.plot(range(0, len(results)), results)
         plt.xlabel("Iteration")
         plt.ylabel("Fitness")
         plt.legend(["Best", "Mean"])
