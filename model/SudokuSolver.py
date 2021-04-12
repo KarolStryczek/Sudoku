@@ -51,9 +51,13 @@ class SudokuSolver:
                     self.population.mutate()
                     m_logger.info(f'Mutation AFTER: {self.population.get_best_fitness()}, {self.population.get_mean_fitness()}')
             if current_best_fitness == 0:
+                print('current_best_finess = 0. Hurray!')
+                print(self.population.population[0].board)
                 break
             if no_improve_count >= max_no_improve:
                 pass  # TODO BREAK
+        print(self.population.get_best_fitness())
+        print(self.population.population[0].board)    
         log_to_all(f'result: {self.population.get_best_fitness()}, {self.population.get_mean_fitness()}')
         plt.plot(range(0, len(results)), results)
         plt.xlabel("Iteration")
